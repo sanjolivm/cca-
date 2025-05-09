@@ -530,7 +530,7 @@ def render_navigation():
             st.markdown("---")
             if st.button("🔒 Logout", key="nav_logout"):
                 logout()
-                st.experimental_rerun()
+                st.rerun()
 
 # Pages
 def login_page():
@@ -555,7 +555,7 @@ def login_page():
                     time.sleep(0.5)  # Simulate network delay
                     if login(email, password):
                         st.success("Login successful!")
-                        st.experimental_rerun()
+                        st.rerun()
                     else:
                         st.error("Invalid email or password")
     
@@ -736,7 +736,7 @@ def view_reports():
     if st.button("← Back to Dashboard", key="back_btn"):
         st.session_state.current_page = "doctor_dashboard"
         log_activity("navigation", "Returned to dashboard from view reports")
-        st.experimental_rerun()
+        st.rerun()
     
     # Patient search with autocomplete
     st.markdown('<h2 class="sub-header">Select Patient</h2>', unsafe_allow_html=True)
@@ -792,7 +792,7 @@ def view_reports():
         if st.button("Request New Report", key="request_report"):
             st.session_state.current_page = "request_report"
             st.session_state.selected_patient = email
-            st.experimental_rerun()
+            st.rerun()
 
 def diagnosis_records():
     """Render the diagnosis records page"""
@@ -805,7 +805,7 @@ def diagnosis_records():
     if st.button("← Back to Dashboard", key="back_btn"):
         st.session_state.current_page = "doctor_dashboard"
         log_activity("navigation", "Returned to dashboard from diagnosis records")
-        st.experimental_rerun()
+        st.rerun()
     
     # Patient selection
     st.markdown('<h2 class="sub-header">Select Patient</h2>', unsafe_allow_html=True)
@@ -872,7 +872,7 @@ def diagnosis_records():
             if st.button("Add New Diagnosis", key="add_diagnosis"):
                 st.session_state.current_page = "add_diagnosis"
                 st.session_state.selected_patient = email
-                st.experimental_rerun()
+                st.rerun()
         with col2:
             if st.button("Generate Report", key="generate_report"):
                 with st.spinner("Generating comprehensive report..."):
@@ -896,7 +896,7 @@ def submit_feedback():
     if st.button("← Back to Dashboard", key="back_btn"):
         st.session_state.current_page = "doctor_dashboard"
         log_activity("navigation", "Returned to dashboard from submit feedback")
-        st.experimental_rerun()
+        st.rerun()
     
     # Patient selection
     st.markdown('<h2 class="sub-header">Select Patient</h2>', unsafe_allow_html=True)
@@ -1041,7 +1041,7 @@ def patient_dashboard():
         # Book appointment button
         if st.button("Book New Appointment", key="book_appointment"):
             st.session_state.current_page = "book_appointment"
-            st.experimental_rerun()
+            st.rerun()
 
 def symptom_checker():
     """Render the symptom checker page"""
@@ -1054,7 +1054,7 @@ def symptom_checker():
     if st.button("← Back to Dashboard", key="back_btn"):
         st.session_state.current_page = "patient_dashboard"
         log_activity("navigation", "Returned to dashboard from symptom checker")
-        st.experimental_rerun()
+        st.rerun()
     
     st.markdown('<h2 class="sub-header">Describe Your Symptoms</h2>', unsafe_allow_html=True)
     
@@ -1196,7 +1196,7 @@ def symptom_checker():
                     with col1:
                         if st.button("Book Doctor Appointment", key="book_doctor"):
                             st.session_state.current_page = "book_appointment"
-                            st.experimental_rerun()
+                            st.rerun()
                     
                     with col2:
                         if st.button("Save to My Records", key="save_records"):
@@ -1213,7 +1213,7 @@ def upload_report():
     if st.button("← Back to Dashboard", key="back_btn"):
         st.session_state.current_page = "patient_dashboard"
         log_activity("navigation", "Returned to dashboard from upload report")
-        st.experimental_rerun()
+        st.rerun()
     
     st.markdown('<h2 class="sub-header">Upload X-ray / Medical Report</h2>', unsafe_allow_html=True)
     
@@ -1312,7 +1312,7 @@ def view_history():
     if st.button("← Back to Dashboard", key="back_btn"):
         st.session_state.current_page = "patient_dashboard"
         log_activity("navigation", "Returned to dashboard from view history")
-        st.experimental_rerun()
+        st.rerun()
     
     if st.session_state.user_email in st.session_state.patient_data:
         patient_data = st.session_state.patient_data[st.session_state.user_email]
@@ -1442,7 +1442,7 @@ def about_page():
             else:
                 st.session_state.current_page = "patient_dashboard"
             log_activity("navigation", "Returned to dashboard from about page")
-            st.experimental_rerun()
+            st.rerun()
     
     # About sections
     st.markdown("""
@@ -1547,7 +1547,7 @@ def book_appointment():
     if st.button("← Back to Dashboard", key="back_btn"):
         st.session_state.current_page = "patient_dashboard"
         log_activity("navigation", "Returned to dashboard from book appointment")
-        st.experimental_rerun()
+        st.rerun()
     
     st.markdown('<h2 class="sub-header">Schedule a Doctor Appointment</h2>', unsafe_allow_html=True)
     
@@ -1677,7 +1677,7 @@ def add_diagnosis():
     if st.button("← Back to Records", key="back_btn"):
         st.session_state.current_page = "diagnosis_records"
         log_activity("navigation", "Returned to diagnosis records from add diagnosis")
-        st.experimental_rerun()
+        st.rerun()
     
     if "selected_patient" in st.session_state and st.session_state.selected_patient in st.session_state.patient_data:
         patient_email = st.session_state.selected_patient
@@ -1809,7 +1809,7 @@ def add_diagnosis():
         st.error("No patient selected or invalid patient")
         if st.button("Return to Dashboard"):
             st.session_state.current_page = "doctor_dashboard"
-            st.experimental_rerun()
+            st.rerun()
 
 def request_report():
     """Render the request report page"""
@@ -1822,7 +1822,7 @@ def request_report():
     if st.button("← Back to Reports", key="back_btn"):
         st.session_state.current_page = "view_reports"
         log_activity("navigation", "Returned to view reports from request report")
-        st.experimental_rerun()
+        st.rerun()
     
     if "selected_patient" in st.session_state and st.session_state.selected_patient in st.session_state.patient_data:
         patient_email = st.session_state.selected_patient
@@ -1943,7 +1943,7 @@ def request_report():
         st.error("No patient selected or invalid patient")
         if st.button("Return to Dashboard"):
             st.session_state.current_page = "doctor_dashboard"
-            st.experimental_rerun()
+            st.rerun()
 # Add these helper functions before the initialize_session_state function
 
 def log_activity(activity_type, description):
@@ -1970,7 +1970,7 @@ def check_auth(required_role=None):
     if not st.session_state.authenticated:
         st.warning("Please log in to access this page")
         st.session_state.current_page = "login"
-        st.experimental_rerun()
+        st.rerun()
         return False
     
     if required_role and st.session_state.user_role != required_role:
@@ -1982,7 +1982,7 @@ def check_auth(required_role=None):
         else:
             st.session_state.current_page = "patient_dashboard"
         
-        st.experimental_rerun()
+        st.rerun()
         return False
     
     return True
