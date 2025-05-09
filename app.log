@@ -1,0 +1,3 @@
+2025-05-09 01:57:49,865 - healthcare-assistant - WARNING - Login attempt with unknown email: doctor1@gmail.com
+2025-05-09 01:58:23,912 - healthcare-assistant - INFO - New user registered: doctor1@gmail.com as Doctor
+2025-05-09 01:58:31,655 - healthcare-assistant - INFO - Successful login: doctor1@gmail.com
